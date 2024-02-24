@@ -1,0 +1,16 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box{
+  height: 20vh;
+  width: 20vw;
+  margin: 20px;
+  border: white 5px solid;
+}
+
+.test{
+  background-color: rgb(209, 37, 37)
+}
