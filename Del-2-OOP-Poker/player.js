@@ -9,21 +9,32 @@ class Player{
         this.name = name;
         this.hand = [];
         this.totalValue = 0;
+        this.calculateTotalValue();
     }
     
     reciveCard(card){
-        this.hand.push(card)
+        if(card != undefined)
+        {
+            this.hand.push(card);
+            this.calculateTotalValue();
+        }
     }
 
     calculateTotalValue(){
         let holding = this.hand
         this.totalValue = holding.reduce((total,card)=>{
            return total + card.value
-        },0)
+        },0);
     }
 
     throwCard(){
-        return this.hand.pop()
+        return this.hand.shift();
+        this.calculateTotalValue();
+    }
+
+    emptyHand(){
+        this.hand=[];
+        this.calculateTotalValue();
     }
 }
 

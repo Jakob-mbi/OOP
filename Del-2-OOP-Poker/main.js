@@ -2,11 +2,17 @@ import './style.css'
 import Deck from './deck'
 import Player from './player'
 
+//del 1
+
 let firtDeck = new Deck
 let Slim = new Player("Slim")
 let Luke = new Player("Luke")
 
 console.log(firtDeck.deck)
+
+//del 2
+console.log(Slim)
+console.log(Luke)
 
 for(let i =0;i<5;i++)
 {
@@ -15,13 +21,39 @@ for(let i =0;i<5;i++)
 }
 
 console.log(firtDeck.deck)
-Slim.calculateTotalValue()
-Luke.calculateTotalValue()
+
+
 console.log(Slim)
 console.log(Luke)
-Slim.throwCard()
-console.log(Slim.hand)
+
+//del 3
+for(let i =0;i<2;i++)
+{
+  firtDeck.reciveThrowCard(Slim.throwCard())
+  firtDeck.reciveThrowCard(Luke.throwCard())
+  Slim.reciveCard(firtDeck.deal())
+  Luke.reciveCard(firtDeck.deal())
+}
+console.log(firtDeck.deck)
 console.log(Slim)
+console.log(Luke)
+console.log(firtDeck.throwPile)
+
+//del 4
+Slim.emptyHand()
+Luke.emptyHand()
+firtDeck.emptyThrowPile()
+console.log(firtDeck.deck)
+console.log(Slim)
+console.log(Luke)
+
+firtDeck.deck=[]
+
+Slim.reciveCard(firtDeck.deal())
+Luke.reciveCard(firtDeck.deal())
+console.log(Slim)
+console.log(Luke)
+
 
 
 // for(let i =0;i<2;i++)
