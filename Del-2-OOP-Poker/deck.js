@@ -75,7 +75,7 @@ class Deck {
 
   isEmpty() {
     return (this.deck.length==0);
-  } //End of isEmpty()
+  } 
   
   length() {
     return this.deck.length;
