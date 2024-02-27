@@ -13,7 +13,7 @@ class Ui{
 
             </div>
             <div class="card-footer">
-            <button type="button" class="btn btn-primary" id="Continue">Continue</button>
+            <button type="button" class="btn btn-primary my-1" id="Continue">Start Game</button>
             <button type="button" class="btn btn-danger" id="Continue">Restart Game</button>
             </div>
         </div>

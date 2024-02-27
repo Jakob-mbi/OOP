@@ -13,7 +13,9 @@ class Game{
         try{
             Ui.startingUi()
             let index = 0
-            document.querySelector("#Continue").addEventListener("click",()=>{
+            const btn = document.querySelector("#Continue")
+            btn.addEventListener("click",()=>{
+                btn.innerHTML="Continue"
                 switch(index) {
                     case 0:
                         this.addPlayers()
@@ -23,6 +25,11 @@ class Game{
                         this.dealerDealInitialCards(5)
                         index++
                       break;
+                    case 2:
+                        this.throwCards()
+                        this.showNewCards()
+                        index++
+                        break;
                     default:
                         Validation.validateWinnerInUi(this.players,Ui.uiConsoleText)
                 }
@@ -34,7 +41,25 @@ class Game{
         }
 
     }
-
+    throwCards(){
+        this.players.forEach(player=>{
+            try{
+                let throwCards = []
+                throwCards[0] = prompt(player.name+" please choose the first card number you whant to exchange");
+                throwCards[1] = prompt(player.name+" please choose the second card number you whant to exchange");
+                throwCards.forEach(cardIndex=>{Validation.valueExist(cardIndex,player.hand)})
+                player.hand.splice(Number(throwCards[0]),1)
+                player.hand.splice(Number(throwCards[1]),1)
+                player.reciveCard(this.dealer.dealCard())
+                player.reciveCard(this.dealer.dealCard())
+            }
+            catch(err)
+            {
+                console.error(err)
+            }
+ 
+        })
+    }
 
     addPlayers(){
         const numberOfPlayers = prompt("Please enter number of players, 2 to 5");
@@ -58,7 +83,15 @@ class Game{
             let cards = player.hand.map(card=> Ui.uiConsoleText(`${player.hand.indexOf(card)}: ${card.color} ${card.name}`))
         
         })
-    }  
+    } 
+    showNewCards(){
+        let classes = "text-capitalize fs-3 fw-bold"
+        this.players.forEach(player => {
+            Ui.uiConsoleText(player.name+" new hand",classes)
+            let cards = player.hand.map(card=> Ui.uiConsoleText(`${player.hand.indexOf(card)}: ${card.color} ${card.name}`))
+        
+        })
+    } 
 
 }
 

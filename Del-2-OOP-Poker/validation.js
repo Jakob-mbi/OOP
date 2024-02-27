@@ -42,6 +42,10 @@ class Validation{
     {
         if(document.querySelector(`#${id}`)==null) throw "Ui does not exist"
     }
+    static valueExist(index,arr)
+    {
+        if(typeof arr[index] == "undefined") throw "That card does not exist"
+    }
 
 }
 
