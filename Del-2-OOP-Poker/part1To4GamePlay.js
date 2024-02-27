@@ -7,11 +7,14 @@ let firtDeck = new Deck
 let Slim = new Player("Slim")
 let Luke = new Player("Luke")
 
-function gamePLay(){
+function gamePLay1to4(){
+    const app = document.querySelector("#app")
+    app.innerHTML= '<div class="mb-3">Please open console</div>'
+    app.innerHTML+= `<button type="button" class="btn btn-primary">Press to continue</button>`
     const button = document.querySelector("button")
     const gamePlay = [part2,part3,part4]
     let index = 0;
-    console.log("please press the button to start the game")
+    console.log("Please press the button to start the game")
     //del 1
     console.log(firtDeck.deck)
     button.addEventListener("click",()=>{
@@ -39,7 +42,7 @@ function part2(){
   console.log(Slim.hand)
   console.log(Luke.name+" total value:"+Luke.totalValue)
   console.log(Luke.hand)
-  console.log("please press the button to continue")
+  console.log("Please press the button to continue")
 }
 
 function part3(){
@@ -57,7 +60,7 @@ function part3(){
   console.log(Luke.name+" total value:"+Luke.totalValue)
   console.log(Luke.hand)
   Validation.validateWinner([Slim,Luke])
-  console.log("please press the button to continue")
+  console.log("Please press the button to continue")
 }
 
 function part4(){
@@ -72,4 +75,4 @@ function part4(){
   console.log("End of gameplay part 1 to 4")
 }
 
-export default gamePLay
+export default gamePLay1to4

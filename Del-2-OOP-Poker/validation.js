@@ -16,6 +16,20 @@ class Validation{
         })
         console.log("The winner is "+theWinnerIs.name)
     }
+    static validateWinnerInUi(players,uiFunc){
+        let classes = "text-capitalize fs-3 fw-bold"
+        const participants = players;
+        let theWinnerIs = participants[0];
+        participants.forEach(player=>{
+        let classes = "text-capitalize fs-3 fw-bold"
+            uiFunc(player.name+" total card value is "+player.totalValue)
+            if(theWinnerIs.totalValue<player.totalValue)
+            {
+                theWinnerIs=player;
+            }
+        })
+        uiFunc("The winner is "+theWinnerIs.name,classes)
+    }
     static validateNumberOfPLayers(number)
     {
         if(isNaN(number)) throw "You did not enter a number";
@@ -23,6 +37,10 @@ class Validation{
         if(number<2) throw "You need minimum 2 players";
 
         if(number>5) throw "You can maximum have 5 players";
+    }
+    static existensOfUi(id)
+    {
+        if(document.querySelector(`#${id}`)==null) throw "Ui does not exist"
     }
 
 }

@@ -1,4 +1,4 @@
-import Deck from './deck'
+import Ui from './gameUi';
 import Player from './player'
 import Dealer from './dealer'
 import Validation from './validation'
@@ -11,10 +11,22 @@ class Game{
 
     startGame(){
         try{
-            
-            this.addPlayers();
-            this.dealerDealInitialCards(5);
-            Validation.validateWinner(this.players)
+            Ui.startingUi()
+            let index = 0
+            document.querySelector("#Continue").addEventListener("click",()=>{
+                switch(index) {
+                    case 0:
+                        this.addPlayers()
+                        index++
+                      break;
+                    case 1:
+                        this.dealerDealInitialCards(5)
+                        index++
+                      break;
+                    default:
+                        Validation.validateWinnerInUi(this.players,Ui.uiConsoleText)
+                }
+            })
         }
         catch(err)
         {
@@ -36,13 +48,17 @@ class Game{
 
     dealerDealInitialCards(numberOfCards)
     {
+        let classes = "text-capitalize fs-3 fw-bold"
         this.players.forEach(player => {
+            Ui.uiConsoleText("Cards Dealt to "+player.name,classes)
             for(let i = 0; i < numberOfCards; i++)
             {
                 player.reciveCard(this.dealer.dealCard())
             }
+            let cards = player.hand.map(card=> Ui.uiConsoleText(`${player.hand.indexOf(card)}: ${card.color} ${card.name}`))
+        
         })
-    }
+    }  
 
 }
 
