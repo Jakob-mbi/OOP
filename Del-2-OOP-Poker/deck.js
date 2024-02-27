@@ -10,7 +10,6 @@ VALUE_MAP.set('King', 13)
 class Deck {
     constructor() {
     this.deck = [];
-    this.throwPile = [];
     this.reset(); //Add 52 cards to the deck
     this.shuffle(); //Shuffle the deck
 
@@ -62,24 +61,9 @@ class Deck {
     }
   } 
 
-  reciveThrowCard(card){
-    this.throwPile.push(card)
-    
-  }
-
-  emptyThrowPile(){
-    this.reset()
-    this.shuffle();
-    this.throwPile = [];
-  }
-
   isEmpty() {
     return (this.deck.length==0);
   } 
-  
-  length() {
-    return this.deck.length;
-  }
   
 } 
 
