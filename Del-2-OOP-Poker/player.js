@@ -28,8 +28,17 @@ class Player{
     }
 
     throwCard(){
-        return this.hand.shift();
-        this.calculateTotalValue();
+        let lowstValueCard = this.hand[0];
+        let index = 0;
+        for(let i = 0; i<this.hand.length;i++)
+        {
+            if(this.hand[i].value<lowstValueCard.value)
+            {
+                lowstValueCard = this.hand[i];
+                index = i;
+            }
+        }
+        return this.hand.splice(index,1);
     }
 
     emptyHand(){
