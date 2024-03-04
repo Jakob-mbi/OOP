@@ -47,6 +47,7 @@ class Validation{
         if(typeof arr[index] == "undefined") throw "That card does not exist"
     }
 
+
 }
 
 

@@ -12,28 +12,53 @@ class Game{
     startGame(){
         try{
             Ui.startingUi()
-            let index = 0
+            const rounds = prompt("Hur många rundor vill du spela?")
+            this.addPlayers()
+
             const btn = document.querySelector("#Continue")
+            const btnRestart = document.querySelector("#restart")
+            const uiConsole = document.querySelector("#console")
+
+            let numberofGamesPlayd= 0
+            let index = 0
+
             btn.addEventListener("click",()=>{
                 btn.innerHTML="Continue"
                 switch(index) {
                     case 0:
-                        this.addPlayers()
-                        index++
-                      break;
-                    case 1:
                         this.dealerDealInitialCards(5)
                         index++
-                      break;
-                    case 2:
+                    break;
+                    case 1:
                         this.throwCards()
                         this.showNewCards()
                         index++
                         break;
-                    default:
+                    
+                    case 2:
                         Validation.validateWinnerInUi(this.players,Ui.uiConsoleText)
+                        index++
+                        break;
+                    default:
+                        numberofGamesPlayd++
+                        index++
+
+                }
+                if(index > 3 && numberofGamesPlayd < rounds)
+                {
+                    index=0
+                    uiConsole.innerHTML="";
+                    this.dealer.startDeckOver();
+                    this.players.forEach(player=>player.emptyHand())
                 }
             })
+            
+            btnRestart.addEventListener("click",function(){
+                location.reload();
+            })
+           
+                    
+    
         }
         catch(err)
         {
@@ -45,8 +70,8 @@ class Game{
         this.players.forEach(player=>{
             try{
                 let throwCards = []
-                throwCards[0] = prompt(player.name+" please choose the first card number you whant to exchange");
-                throwCards[1] = prompt(player.name+" please choose the second card number you whant to exchange");
+                throwCards[0] = prompt(player.name+" please choose the first card position number you whant to exchange");
+                throwCards[1] = prompt(player.name+" please choose the second card position number you whant to exchange");
                 throwCards.forEach(cardIndex=>{Validation.valueExist(cardIndex,player.hand)})
                 player.hand.splice(Number(throwCards[0]),1)
                 player.hand.splice(Number(throwCards[1]),1)
